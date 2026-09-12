@@ -1,0 +1,84 @@
+group,name,target,register_space,logical_address,pdu_address,register_count,data_type,multiplier,unit,read_function,project_use,source,notes
+Identity,Serial,inverter,input,4990,4989,10,UTF8,1,,0x04,identity,R;P11,"Project accepts an ASCII letter/digit/hyphen serial, 6–20 characters."
+Identity,Model code,inverter,input,5000,4999,1,U16,1,,0x04,identity,R;P11,Only 3599 / 0x0E0F is accepted by the current tools.
+Identity,Rated AC power,inverter,input,5001,5000,1,U16,0.1,kW,0x04,identity,R;P11,Raw 100 is the required 10 kW identity check.
+Identity,Output connection type,inverter,input,5002,5001,1,U16 enum,1,,0x04,raw identity block,R;P11,0 single phase; 1 three-phase four-wire; 2 three-phase three-wire. Affects voltage interpretation.
+PV and AC,Internal temperature,inverter,input,5008,5007,1,S16,0.1,degC,0x04,CLI;values,R;P11,
+PV and AC,MPPT 1 voltage,inverter,input,5011,5010,1,U16,0.1,V,0x04,values,R;P11,
+PV and AC,MPPT 1 current,inverter,input,5012,5011,1,U16,0.1,A,0x04,values,R;P11,
+PV and AC,MPPT 2 voltage,inverter,input,5013,5012,1,U16,0.1,V,0x04,values,R;P11,
+PV and AC,MPPT 2 current,inverter,input,5014,5013,1,U16,0.1,A,0x04,values,R;P11,
+PV and AC,Total PV DC power,inverter,input,5017,5016,2,U32,1,W,0x04,values,R;P11,
+PV and AC,AC voltages A/B/C,inverter,input,5019,5018,3,U16[3],0.1,V,0x04,CLI;values,R;P11,Phase/line meaning depends on output type 5002; project displays phase labels.
+PV and AC,Reactive AC power,inverter,input,5033,5032,2,S32,1,var,0x04,values,R;P11,
+PV and AC,Power factor,inverter,input,5035,5034,1,S16,0.001,,0x04,values,R;P11,
+PV and AC,Legacy grid frequency,inverter,input,5036,5035,1,U16,0.1,Hz,0x04,CLI;values,R;P11,Project can infer 0.01 Hz from the raw range; 5242 is preferred.
+PV and AC,Grid frequency,inverter,input,5242,5241,1,U16,0.01,Hz,0x04,CLI;values,R;P11,
+PV and AC,AC currents A/B/C,inverter,input,13031,13030,3,S16[3],0.1,A,0x04,values,R;P11,
+PV and AC,Active AC output,inverter,input,13034,13033,2,S32,1,W,0x04,CLI;values,R;P11,
+Operating state,Operating-state word,inverter,input,13000,12999,1,U16 enum,1,,0x04,CLI;values,R;P11,Not the holding Start/Stop word. See state table.
+Operating state,Power-flow flags,inverter,input,13001,13000,1,U16 bitset,1,,0x04,raw only,R;P11,Not decoded into flow arrows; do not infer signs from this reference.
+Energy,PV energy today,inverter,input,13002,13001,1,U16,0.1,kWh,0x04,values,R;P11,
+Energy,PV lifetime energy,inverter,input,13003,13002,2,U32,0.1,kWh,0x04,values,R;P11,
+Energy,Battery discharge today,inverter,input,13026,13025,1,U16,0.1,kWh,0x04,values,R;P11,
+Energy,Grid import today,inverter,input,13036,13035,1,U16,0.1,kWh,0x04,values,R;P11,
+Energy,Battery charge today,inverter,input,13040,13039,1,U16,0.1,kWh,0x04,values,R;P11,
+Energy,Grid export today,inverter,input,13045,13044,1,U16,0.1,kWh,0x04,values,R;P11,
+Meter and load,Reported load,inverter,input,13008,13007,2,S32,1,W,0x04,values,R;P11,Can describe a shared connection; do not sum duplicate reports.
+Meter and load,Reported grid exchange,inverter,input,13010,13009,2,S32,1,W,0x04,values,R;P11,Project interprets positive as export; opposite to documented meter-phase signs.
+Meter and load,Meter phase 1 active power,inverter,input,5603,5602,2,S32,1,W,0x04,values,R;P11,Valid forwarded meter required; P11 says positive import and negative export. CLI values retains the reported sign.
+Meter and load,Meter phase 2 active power,inverter,input,5605,5604,2,S32,1,W,0x04,values,R;P11,Valid forwarded meter required; P11 says positive import and negative export. CLI values retains the reported sign.
+Meter and load,Meter phase 3 active power,inverter,input,5607,5606,2,S32,1,W,0x04,values,R;P11,Valid forwarded meter required; P11 says positive import and negative export. CLI values retains the reported sign.
+Battery,Battery voltage,inverter,input,13020,13019,1,U16,0.1,V,0x04,values,R;P11,
+Battery,Legacy battery current,inverter,input,13021,13020,1,U16,0.1,A,0x04,raw only,R;P11,SHRT nominal legacy encoding; signedness differs in other model families. Project uses 5631 instead.
+Battery,Legacy battery power,inverter,input,13022,13021,1,U16,1,W,0x04,raw only,R;P11,Use signed 5214–5215 instead.
+Battery,Battery current,inverter,input,5631,5630,1,S16,0.1,A,0x04,values,R;P11,Preferred signed current. Direction labels are not inferred by the CLI values.
+Battery,Battery power,inverter,input,5214,5213,2,S32,1,W,0x04,values,R;P11,Signed measurement; CLI values does not infer a universal direction label.
+Battery,State of charge,inverter,input,13023,13022,1,U16,0.1,%,0x04,values,R;P11,
+Battery,State of health,inverter,input,13024,13023,1,U16,0.1,%,0x04,values,R;P11,
+Battery,Battery temperature,inverter,input,13025,13024,1,S16,0.1,degC,0x04,values,R;P11,
+Battery,Permitted charge current,inverter,input,5635,5634,1,U16,1,A,0x04,values,R;P11,"BMS limit, not actual current and not proof charging is active."
+Battery,Permitted discharge current,inverter,input,5636,5635,1,U16,1,A,0x04,values,R;P11,
+Battery,Battery capacity,inverter,input,5639,5638,1,U16,0.01,kWh,0x04,values,R;P11,"Reported capacity, not directly measured remaining usable energy."
+Backup,Backup currents A/B/C,inverter,input,5720,5719,3,S16[3],0.1,A,0x04,values,R;P11,
+Backup,Total backup power,inverter,input,5726,5725,2,S32,1,W,0x04,values,R;P11,P11 signed; P2 used U32. Decoder follows signed encoding; check firmware compatibility.
+Backup,Backup voltages A/B/C,inverter,input,5731,5730,3,U16[3],0.1,V,0x04,values,R;P11,
+Backup,Backup frequency,inverter,input,5734,5733,1,U16,0.01,Hz,0x04,values,R;P11,
+Fault blocks,Inverter alarms,inverter,input,13050,13049,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,Grid faults,inverter,input,13052,13051,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,System faults 1,inverter,input,13054,13053,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,System faults 2,inverter,input,13056,13055,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,DC faults,inverter,input,13058,13057,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,Permanent faults,inverter,input,13060,13059,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,BDC faults,inverter,input,13062,13061,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,Permanent BDC faults,inverter,input,13064,13063,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,Battery faults,inverter,input,13066,13065,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,Battery alarms,inverter,input,13068,13067,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,BMS alarms 1,inverter,input,13070,13069,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,BMS protections,inverter,input,13072,13071,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,BMS faults 1,inverter,input,13074,13073,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,BMS faults 2,inverter,input,13076,13075,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Fault blocks,BMS alarms 2,inverter,input,13078,13077,2,U32 bitset,1,,0x04,CLI raw;values selected labels,R;P2;P11,Two words form one bit field. CLI values reports each nonzero word separately.
+Optional BMS,BMS serial,BMS unit 200,input,10711,10710,10,ASCII,1,,0x04,reference only; not queried by CLI,C1,Verify battery identity before using this separate community map; not queried by CLI.
+Optional BMS,BMS firmware,BMS unit 200,input,10721,10720,10,ASCII,1,,0x04,reference only; not queried by CLI,C1,String returned by community mapping.
+Optional BMS,BMS voltage,BMS unit 200,input,10741,10740,1,U16,0.1,V,0x04,reference only; not queried by CLI,C1,Separate battery-side measurement.
+Optional BMS,BMS current,BMS unit 200,input,10742,10741,1,S16,0.1,A,0x04,reference only; not queried by CLI,C1,Separate battery-side measurement.
+Optional BMS,BMS temperature,BMS unit 200,input,10743,10742,1,U16,0.1,degC,0x04,reference only; not queried by CLI,C1,Unsigned in community mapping; negative-temperature interpretation not verified.
+Optional BMS,BMS state of charge,BMS unit 200,input,10744,10743,1,U16,0.1,%,0x04,reference only; not queried by CLI,C1,May differ from inverter SOC.
+Optional BMS,BMS state of health,BMS unit 200,input,10745,10744,1,U16,1,%,0x04,reference only; not queried by CLI,C1,Scale differs from inverter register 13024.
+Optional BMS,Maximum-cell position code,BMS unit 200,input,10758,10757,1,U16 raw,1,,0x04,reference only; not queried by CLI,C1,Position decoding not implemented.
+Optional BMS,Minimum-cell position code,BMS unit 200,input,10760,10759,1,U16 raw,1,,0x04,reference only; not queried by CLI,C1,Position decoding not implemented.
+Optional BMS,"Module cell maxima, slots 1–8",BMS unit 200,input,10765,10764,8,U16[8],0.0001,V,0x04,reference only; not queried by CLI,C1,Each word is one slot; unused slots may be zero-filled.
+Optional BMS,"Module cell minima, slots 1–8",BMS unit 200,input,10773,10772,8,U16[8],0.0001,V,0x04,reference only; not queried by CLI,C1,Each word is one slot; not individual-cell telemetry.
+Optional BMS,Contactor status code,BMS unit 200,input,10789,10788,1,U16 raw,1,,0x04,reference only; not queried by CLI,C1,Kept raw; no universal status decoding claimed.
+Holding settings,Start/Stop,inverter,holding,13000,12999,1,U16,1,,0x03,CLI read;guarded Start write,P11;R,207 / 0x00CF Start; 206 / 0x00CE Stop. Only the guarded CLI can send Start.
+Holding settings,EMS selection,inverter,holding,13050,13049,1,U16,1,,0x03,reference only,P11,P11: 0 self-consumption; 2 forced; 3 external EMS; 4 VPP. Firmware-dependent.
+Holding settings,Battery command,inverter,holding,13051,13050,1,U16,1,,0x03,reference only,P11,0xAA charge; 0xBB discharge; 0xCC idle command. Context depends on EMS mode.
+Holding settings,Requested battery power,inverter,holding,13052,13051,1,U16,1,W,0x03,reference only,P11,"This is a command setting, not measured battery power."
+Holding settings,Maximum SOC setting,inverter,holding,13058,13057,1,U16,0.1,%,0x03,reference only,P11,"A configured bound, not actual SOC."
+Holding settings,Minimum SOC setting,inverter,holding,13059,13058,1,U16,0.1,%,0x03,reference only,P11,"A configured bound, not actual SOC."
+Holding settings,Feed-in limit value,inverter,holding,13074,13073,1,U16,1,W,0x03,reference only,P11,"P11 encoding; check enable state, firmware and applicable model."
+Holding settings,Feed-in limit enable,inverter,holding,13087,13086,1,U16,1,,0x03,reference only,P11,0xAA enabled; 0x55 disabled. Not an installation recommendation.
+Holding settings,Feed-in limit ratio,inverter,holding,13088,13087,1,U16,0.1,%,0x03,reference only,P11,P11 encoding; do not confuse with absolute watts.
+Holding settings,Active-power limit enable,inverter,holding,13089,13088,1,U16,1,,0x03,reference only,P11,0xAA enabled; 0x55 disabled. Separate from feed-in limiting.
+Holding settings,Active-power limit ratio,inverter,holding,13090,13089,1,U16,0.1,%,0x03,reference only,P11,P11 encoding; different control from grid export limit.

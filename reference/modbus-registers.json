@@ -1,0 +1,1791 @@
+{
+  "schema_version": 1,
+  "description": "SH10RT register reference; support depends on model, firmware and interface.",
+  "addressing": {
+    "logical_base": 1,
+    "pdu_base": 0,
+    "pdu_offset_from_logical": -1,
+    "bytes_per_register": 2,
+    "byte_order_within_register": "big_endian",
+    "word_order_for_32bit_values": "low_word_first",
+    "bit_numbering_base": 0
+  },
+  "sources_file": "modbus-sources.json",
+  "registers": [
+    {
+      "group": "Identity",
+      "name": "Serial",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 4990,
+      "pdu_address": 4989,
+      "register_count": 10,
+      "data_type": "UTF8",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "identity",
+      "notes": "Project accepts an ASCII letter/digit/hyphen serial, 6–20 characters.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Identity",
+      "name": "Model code",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5000,
+      "pdu_address": 4999,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "identity",
+      "notes": "Only 3599 / 0x0E0F is accepted by the current tools.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Identity",
+      "name": "Rated AC power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5001,
+      "pdu_address": 5000,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "kW",
+      "read_function": 4,
+      "project_use": "identity",
+      "notes": "Raw 100 is the required 10 kW identity check.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Identity",
+      "name": "Output connection type",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5002,
+      "pdu_address": 5001,
+      "register_count": 1,
+      "data_type": "U16 enum",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "raw identity block",
+      "notes": "0 single phase; 1 three-phase four-wire; 2 three-phase three-wire. Affects voltage interpretation.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "Internal temperature",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5008,
+      "pdu_address": 5007,
+      "register_count": 1,
+      "data_type": "S16",
+      "multiplier": 0.1,
+      "unit": "degC",
+      "read_function": 4,
+      "project_use": "CLI;values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "MPPT 1 voltage",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5011,
+      "pdu_address": 5010,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "MPPT 1 current",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5012,
+      "pdu_address": 5011,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "MPPT 2 voltage",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5013,
+      "pdu_address": 5012,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "MPPT 2 current",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5014,
+      "pdu_address": 5013,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "Total PV DC power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5017,
+      "pdu_address": 5016,
+      "register_count": 2,
+      "data_type": "U32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "AC voltages A/B/C",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5019,
+      "pdu_address": 5018,
+      "register_count": 3,
+      "data_type": "U16[3]",
+      "multiplier": 0.1,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "CLI;values",
+      "notes": "Phase/line meaning depends on output type 5002; project displays phase labels.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "Reactive AC power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5033,
+      "pdu_address": 5032,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "var",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "Power factor",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5035,
+      "pdu_address": 5034,
+      "register_count": 1,
+      "data_type": "S16",
+      "multiplier": 0.001,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "Legacy grid frequency",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5036,
+      "pdu_address": 5035,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "Hz",
+      "read_function": 4,
+      "project_use": "CLI;values",
+      "notes": "Project can infer 0.01 Hz from the raw range; 5242 is preferred.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "Grid frequency",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5242,
+      "pdu_address": 5241,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.01,
+      "unit": "Hz",
+      "read_function": 4,
+      "project_use": "CLI;values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "AC currents A/B/C",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13031,
+      "pdu_address": 13030,
+      "register_count": 3,
+      "data_type": "S16[3]",
+      "multiplier": 0.1,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "PV and AC",
+      "name": "Active AC output",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13034,
+      "pdu_address": 13033,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "CLI;values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Operating state",
+      "name": "Operating-state word",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13000,
+      "pdu_address": 12999,
+      "register_count": 1,
+      "data_type": "U16 enum",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI;values",
+      "notes": "Not the holding Start/Stop word. See state table.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Operating state",
+      "name": "Power-flow flags",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13001,
+      "pdu_address": 13000,
+      "register_count": 1,
+      "data_type": "U16 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "raw only",
+      "notes": "Not decoded into flow arrows; do not infer signs from this reference.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Energy",
+      "name": "PV energy today",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13002,
+      "pdu_address": 13001,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "kWh",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Energy",
+      "name": "PV lifetime energy",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13003,
+      "pdu_address": 13002,
+      "register_count": 2,
+      "data_type": "U32",
+      "multiplier": 0.1,
+      "unit": "kWh",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Energy",
+      "name": "Battery discharge today",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13026,
+      "pdu_address": 13025,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "kWh",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Energy",
+      "name": "Grid import today",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13036,
+      "pdu_address": 13035,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "kWh",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Energy",
+      "name": "Battery charge today",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13040,
+      "pdu_address": 13039,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "kWh",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Energy",
+      "name": "Grid export today",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13045,
+      "pdu_address": 13044,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "kWh",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Meter and load",
+      "name": "Reported load",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13008,
+      "pdu_address": 13007,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Can describe a shared connection; do not sum duplicate reports.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Meter and load",
+      "name": "Reported grid exchange",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13010,
+      "pdu_address": 13009,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Project interprets positive as export; opposite to documented meter-phase signs.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Meter and load",
+      "name": "Meter phase 1 active power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5603,
+      "pdu_address": 5602,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Valid forwarded meter required; P11 says positive import and negative export. CLI values retains the reported sign.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Meter and load",
+      "name": "Meter phase 2 active power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5605,
+      "pdu_address": 5604,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Valid forwarded meter required; P11 says positive import and negative export. CLI values retains the reported sign.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Meter and load",
+      "name": "Meter phase 3 active power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5607,
+      "pdu_address": 5606,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Valid forwarded meter required; P11 says positive import and negative export. CLI values retains the reported sign.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Battery voltage",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13020,
+      "pdu_address": 13019,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Legacy battery current",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13021,
+      "pdu_address": 13020,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "raw only",
+      "notes": "SHRT nominal legacy encoding; signedness differs in other model families. Project uses 5631 instead.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Legacy battery power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13022,
+      "pdu_address": 13021,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "raw only",
+      "notes": "Use signed 5214–5215 instead.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Battery current",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5631,
+      "pdu_address": 5630,
+      "register_count": 1,
+      "data_type": "S16",
+      "multiplier": 0.1,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Preferred signed current. Direction labels are not inferred by the CLI values.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Battery power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5214,
+      "pdu_address": 5213,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Signed measurement; CLI values does not infer a universal direction label.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "State of charge",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13023,
+      "pdu_address": 13022,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "%",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "State of health",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13024,
+      "pdu_address": 13023,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "%",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Battery temperature",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13025,
+      "pdu_address": 13024,
+      "register_count": 1,
+      "data_type": "S16",
+      "multiplier": 0.1,
+      "unit": "degC",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Permitted charge current",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5635,
+      "pdu_address": 5634,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "BMS limit, not actual current and not proof charging is active.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Permitted discharge current",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5636,
+      "pdu_address": 5635,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Battery",
+      "name": "Battery capacity",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5639,
+      "pdu_address": 5638,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.01,
+      "unit": "kWh",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "Reported capacity, not directly measured remaining usable energy.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Backup",
+      "name": "Backup currents A/B/C",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5720,
+      "pdu_address": 5719,
+      "register_count": 3,
+      "data_type": "S16[3]",
+      "multiplier": 0.1,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Backup",
+      "name": "Total backup power",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5726,
+      "pdu_address": 5725,
+      "register_count": 2,
+      "data_type": "S32",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "P11 signed; P2 used U32. Decoder follows signed encoding; check firmware compatibility.",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Backup",
+      "name": "Backup voltages A/B/C",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5731,
+      "pdu_address": 5730,
+      "register_count": 3,
+      "data_type": "U16[3]",
+      "multiplier": 0.1,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Backup",
+      "name": "Backup frequency",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 5734,
+      "pdu_address": 5733,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.01,
+      "unit": "Hz",
+      "read_function": 4,
+      "project_use": "values",
+      "notes": "",
+      "source_ids": [
+        "R",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "Inverter alarms",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13050,
+      "pdu_address": 13049,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "Grid faults",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13052,
+      "pdu_address": 13051,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "System faults 1",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13054,
+      "pdu_address": 13053,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "System faults 2",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13056,
+      "pdu_address": 13055,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "DC faults",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13058,
+      "pdu_address": 13057,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "Permanent faults",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13060,
+      "pdu_address": 13059,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "BDC faults",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13062,
+      "pdu_address": 13061,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "Permanent BDC faults",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13064,
+      "pdu_address": 13063,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "Battery faults",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13066,
+      "pdu_address": 13065,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "Battery alarms",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13068,
+      "pdu_address": 13067,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "BMS alarms 1",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13070,
+      "pdu_address": 13069,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "BMS protections",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13072,
+      "pdu_address": 13071,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "BMS faults 1",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13074,
+      "pdu_address": 13073,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "BMS faults 2",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13076,
+      "pdu_address": 13075,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Fault blocks",
+      "name": "BMS alarms 2",
+      "target": "inverter",
+      "register_space": "input",
+      "logical_address": 13078,
+      "pdu_address": 13077,
+      "register_count": 2,
+      "data_type": "U32 bitset",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "CLI raw;values selected labels",
+      "notes": "Two words form one bit field. CLI values reports each nonzero word separately.",
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "BMS serial",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10711,
+      "pdu_address": 10710,
+      "register_count": 10,
+      "data_type": "ASCII",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Verify battery identity before using this separate community map; not queried by CLI.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "BMS firmware",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10721,
+      "pdu_address": 10720,
+      "register_count": 10,
+      "data_type": "ASCII",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "String returned by community mapping.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "BMS voltage",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10741,
+      "pdu_address": 10740,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Separate battery-side measurement.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "BMS current",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10742,
+      "pdu_address": 10741,
+      "register_count": 1,
+      "data_type": "S16",
+      "multiplier": 0.1,
+      "unit": "A",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Separate battery-side measurement.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "BMS temperature",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10743,
+      "pdu_address": 10742,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "degC",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Unsigned in community mapping; negative-temperature interpretation not verified.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "BMS state of charge",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10744,
+      "pdu_address": 10743,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "%",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "May differ from inverter SOC.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "BMS state of health",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10745,
+      "pdu_address": 10744,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "%",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Scale differs from inverter register 13024.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "Maximum-cell position code",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10758,
+      "pdu_address": 10757,
+      "register_count": 1,
+      "data_type": "U16 raw",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Position decoding not implemented.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "Minimum-cell position code",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10760,
+      "pdu_address": 10759,
+      "register_count": 1,
+      "data_type": "U16 raw",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Position decoding not implemented.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "Module cell maxima, slots 1–8",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10765,
+      "pdu_address": 10764,
+      "register_count": 8,
+      "data_type": "U16[8]",
+      "multiplier": 0.0001,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Each word is one slot; unused slots may be zero-filled.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "Module cell minima, slots 1–8",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10773,
+      "pdu_address": 10772,
+      "register_count": 8,
+      "data_type": "U16[8]",
+      "multiplier": 0.0001,
+      "unit": "V",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Each word is one slot; not individual-cell telemetry.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Optional BMS",
+      "name": "Contactor status code",
+      "target": "BMS unit 200",
+      "register_space": "input",
+      "logical_address": 10789,
+      "pdu_address": 10788,
+      "register_count": 1,
+      "data_type": "U16 raw",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 4,
+      "project_use": "reference only; not queried by CLI",
+      "notes": "Kept raw; no universal status decoding claimed.",
+      "source_ids": [
+        "C1"
+      ],
+      "access": "read_only"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Start/Stop",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13000,
+      "pdu_address": 12999,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 3,
+      "project_use": "CLI read;guarded Start write",
+      "notes": "207 / 0x00CF Start; 206 / 0x00CE Stop. Only the guarded CLI can send Start.",
+      "source_ids": [
+        "P11",
+        "R"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "EMS selection",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13050,
+      "pdu_address": 13049,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "P11: 0 self-consumption; 2 forced; 3 external EMS; 4 VPP. Firmware-dependent.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Battery command",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13051,
+      "pdu_address": 13050,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "0xAA charge; 0xBB discharge; 0xCC idle command. Context depends on EMS mode.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Requested battery power",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13052,
+      "pdu_address": 13051,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "This is a command setting, not measured battery power.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Maximum SOC setting",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13058,
+      "pdu_address": 13057,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "%",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "A configured bound, not actual SOC.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Minimum SOC setting",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13059,
+      "pdu_address": 13058,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "%",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "A configured bound, not actual SOC.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Feed-in limit value",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13074,
+      "pdu_address": 13073,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "W",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "P11 encoding; check enable state, firmware and applicable model.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Feed-in limit enable",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13087,
+      "pdu_address": 13086,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "0xAA enabled; 0x55 disabled. Not an installation recommendation.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Feed-in limit ratio",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13088,
+      "pdu_address": 13087,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "%",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "P11 encoding; do not confuse with absolute watts.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Active-power limit enable",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13089,
+      "pdu_address": 13088,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 1.0,
+      "unit": "",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "0xAA enabled; 0x55 disabled. Separate from feed-in limiting.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    },
+    {
+      "group": "Holding settings",
+      "name": "Active-power limit ratio",
+      "target": "inverter",
+      "register_space": "holding",
+      "logical_address": 13090,
+      "pdu_address": 13089,
+      "register_count": 1,
+      "data_type": "U16",
+      "multiplier": 0.1,
+      "unit": "%",
+      "read_function": 3,
+      "project_use": "reference only",
+      "notes": "P11 encoding; different control from grid export limit.",
+      "source_ids": [
+        "P11"
+      ],
+      "access": "read_write"
+    }
+  ],
+  "flags": [
+    {
+      "input_word": 13050,
+      "pdu_address": 13049,
+      "word_bit": 5,
+      "word_mask_hex": "0x0020",
+      "u32_base_register": 13050,
+      "u32_bit": 5,
+      "label": "Parallel communication alarm",
+      "word_mask": 32,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    },
+    {
+      "input_word": 13051,
+      "pdu_address": 13050,
+      "word_bit": 14,
+      "word_mask_hex": "0x4000",
+      "u32_base_register": 13050,
+      "u32_bit": 30,
+      "label": "Meter communication alarm",
+      "word_mask": 16384,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    },
+    {
+      "input_word": 13066,
+      "pdu_address": 13065,
+      "word_bit": 14,
+      "word_mask_hex": "0x4000",
+      "u32_base_register": 13066,
+      "u32_bit": 14,
+      "label": "BMS communication fault",
+      "word_mask": 16384,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    },
+    {
+      "input_word": 13070,
+      "pdu_address": 13069,
+      "word_bit": 5,
+      "word_mask_hex": "0x0020",
+      "u32_base_register": 13070,
+      "u32_bit": 5,
+      "label": "Battery voltage unbalance",
+      "word_mask": 32,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    },
+    {
+      "input_word": 13070,
+      "pdu_address": 13069,
+      "word_bit": 9,
+      "word_mask_hex": "0x0200",
+      "u32_base_register": 13070,
+      "u32_bit": 9,
+      "label": "Cell voltage imbalance",
+      "word_mask": 512,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    },
+    {
+      "input_word": 13072,
+      "pdu_address": 13071,
+      "word_bit": 9,
+      "word_mask_hex": "0x0200",
+      "u32_base_register": 13072,
+      "u32_bit": 9,
+      "label": "Pre-charge failed",
+      "word_mask": 512,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    },
+    {
+      "input_word": 13072,
+      "pdu_address": 13071,
+      "word_bit": 10,
+      "word_mask_hex": "0x0400",
+      "u32_base_register": 13072,
+      "u32_bit": 10,
+      "label": "Abnormal external power-line status",
+      "word_mask": 1024,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    },
+    {
+      "input_word": 13072,
+      "pdu_address": 13071,
+      "word_bit": 13,
+      "word_mask_hex": "0x2000",
+      "u32_base_register": 13072,
+      "u32_bit": 13,
+      "label": "Voltage sampling fault",
+      "word_mask": 8192,
+      "source_ids": [
+        "R",
+        "P2",
+        "P11"
+      ]
+    }
+  ]
+}

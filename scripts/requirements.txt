@@ -1,0 +1,2 @@
+# Optional for WiNet access; native Modbus and discovery use only the standard library.
+websocket-client==1.9.0

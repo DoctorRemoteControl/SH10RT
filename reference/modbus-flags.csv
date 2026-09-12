@@ -1,0 +1,9 @@
+input_word,pdu_address,word_bit,word_mask_hex,u32_base_register,u32_bit,label,source
+13050,13049,5,0x0020,13050,5,Parallel communication alarm,R;P2;P11
+13051,13050,14,0x4000,13050,30,Meter communication alarm,R;P2;P11
+13066,13065,14,0x4000,13066,14,BMS communication fault,R;P2;P11
+13070,13069,5,0x0020,13070,5,Battery voltage unbalance,R;P2;P11
+13070,13069,9,0x0200,13070,9,Cell voltage imbalance,R;P2;P11
+13072,13071,9,0x0200,13072,9,Pre-charge failed,R;P2;P11
+13072,13071,10,0x0400,13072,10,Abnormal external power-line status,R;P2;P11
+13072,13071,13,0x2000,13072,13,Voltage sampling fault,R;P2;P11

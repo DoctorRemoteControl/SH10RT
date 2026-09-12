@@ -1,0 +1,55 @@
+{
+  "review_date": "2026-09-12",
+  "scope": "Reference for the SH10RT tools; availability depends on model, firmware and interface. Manufacturer PDFs are not redistributed.",
+  "sources": [
+    {
+      "id": "R",
+      "kind": "project implementation",
+      "paths": [
+        "scripts/sh10rt_lan.py"
+      ],
+      "qualification": "Source of implemented CLI register reads and measurement decoding."
+    },
+    {
+      "id": "P11",
+      "kind": "manufacturer-authored protocol, third-party mirror",
+      "title": "Communication Protocol of Residential Hybrid Inverter",
+      "version": "V1.1.11",
+      "release_date": "2025-11-17",
+      "url": "https://raw.githubusercontent.com/Gnarfoz/Sungrow-Inverter/main/Modbus%20Information/TI_20251119_Communication%20Protocol%20of%20Residential%20Hybrid%20Inverter_V1.1.11_EN.pdf",
+      "sha256": "76e3d026e3ff8be1eb52075cd024764aaab7454c76167d0e227e53d11af75ced",
+      "locations": "Section 1; table 3; table 4; appendices 1, 2 and 4"
+    },
+    {
+      "id": "P2",
+      "kind": "manufacturer-authored protocol, third-party mirror",
+      "title": "Communication Protocol of Residential Hybrid Inverter",
+      "version": "V1.1.2",
+      "url": "https://manuals.plus/m/37ae50dd1fe804a563a1be36a9cf8b0c40ab0ccf8212775111ce8c241c31517a",
+      "sha256": "37ae50dd1fe804a563a1be36a9cf8b0c40ab0ccf8212775111ce8c241c31517a",
+      "qualification": "Checksum identifies the compared PDF; mirror URLs and filenames are not sufficient version identifiers."
+    },
+    {
+      "id": "C1",
+      "kind": "community implementation, not manufacturer specification",
+      "title": "Optional SBR battery register mapping",
+      "url": "https://raw.githubusercontent.com/mkaiser/Sungrow-SHx-Inverter-Modbus-Home-Assistant/main/additional_sensors/modbus_sungrow_SBR_battery.yaml",
+      "sha256": "50ce27b0c2585f3bab0fbe0206cde3b76bf30c6bbe6552b1e915909776d1dd81",
+      "qualification": "Reference for optional unit-200 diagnostics, not queried by the CLI. Main-branch URL may change; checksum identifies reviewed bytes."
+    },
+    {
+      "id": "M1",
+      "kind": "protocol organization specification",
+      "title": "MODBUS Application Protocol Specification V1.1b3",
+      "url": "https://www.modbus.org/file/secure/modbusprotocolspecification.pdf",
+      "locations": "Function codes and section 7 exception responses"
+    },
+    {
+      "id": "M2",
+      "kind": "protocol organization documentation index",
+      "title": "Modbus Specifications and Implementation Guides",
+      "url": "https://www.modbus.org/modbus-specifications",
+      "locations": "Modbus TCP/IP Messaging Implementation Guide V1.0b"
+    }
+  ]
+}
